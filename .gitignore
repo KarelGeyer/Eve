@@ -1,0 +1,58 @@
+# ==========================================
+# .NET 10 (Backend)
+# ==========================================
+bin/
+obj/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.db-shm
+*.db-wal
+
+# Hot Reload a cache pro .NET 10
+.dotnet/
+.vs/
+.asphistory/
+
+# Entity Framework & User Secrets
+# appsettings.json neignoruj, ale tvoje lokální nastavení ano:
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# ==========================================
+# Node / NX / Frontend (Modern 2026)
+# ==========================================
+node_modules/
+.npm/
+.pnpm-store/
+dist/
+.nx/cache/
+.nx/workspace-data/
+coverage/
+.env
+.env.local
+
+# Vite / Next.js cache
+.next/
+.vite/
+
+# ==========================================
+# Infrastructure & Containers
+# ==========================================
+# Ignorujeme persistenci databází v dockeru, aby se necommitovala data
+infra/mssql_data/
+infra/redis_data/
+.docker/
+
+# ==========================================
+# IDE & System
+# ==========================================
+.vscode/
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.sln.iml
+.DS_Store
+Thumbs.db
