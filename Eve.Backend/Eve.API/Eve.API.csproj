@@ -8,6 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.12.30" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\Groups\Controllers\GroupsControllers.csproj" />
+    <ProjectReference Include="..\Modules\Users\Controllers\UsersControllers.csproj" />
   </ItemGroup>
 
 </Project>

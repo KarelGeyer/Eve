@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{E90B23D6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Groups", "Groups", "{3E863CAA-180F-4647-968F-649FBF3C3192}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controllers", "Eve.Backend\Modules\Users\Controllers\Controllers.csproj", "{2F188964-F2EE-462D-9A77-53EF1CF183A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersControllers", "Eve.Backend\Modules\Users\Controllers\UsersControllers.csproj", "{2F188964-F2EE-462D-9A77-53EF1CF183A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Eve.Backend\Modules\Users\Domain\Domain.csproj", "{A2A31804-1B91-4B83-BD64-2161DD663556}"
 EndProject
@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Eve.Backend\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Eve.Backend\Modules\Users\Infrastructure\Infrastructure.csproj", "{DB3BF6B4-F54E-485A-B42E-80C1218C4FB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controllers", "Eve.Backend\Modules\Groups\Controllers\Controllers.csproj", "{DE7F9546-E957-4EF0-8950-6D3DC67FEE3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupsControllers", "Eve.Backend\Modules\Groups\Controllers\GroupsControllers.csproj", "{DE7F9546-E957-4EF0-8950-6D3DC67FEE3F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Eve.Backend\Modules\Groups\Application\Application.csproj", "{273CE5F0-77FA-47A9-859B-5291039DEB95}"
 EndProject
