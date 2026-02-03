@@ -5,5 +5,9 @@ namespace Controllers
     [Route("api/")]
     [ApiController]
     [Produces("application/json")]
-    public class UserController : ControllerBase { }
+    public class UserController : ControllerBase 
+    { 
+
+    }
+
 }
