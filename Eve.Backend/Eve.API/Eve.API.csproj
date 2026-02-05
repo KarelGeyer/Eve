@@ -12,8 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EmailService\EmailService.csproj" />
     <ProjectReference Include="..\Modules\Groups\Controllers\GroupsControllers.csproj" />
-    <ProjectReference Include="..\Modules\Users\Controllers\Users.Controllers.csproj" />
+    <ProjectReference Include="..\Modules\Users\Users.Controllers\Users.Controllers.csproj" />
+    <ProjectReference Include="..\Shared\Common.Shared\Common.Shared.csproj" />
   </ItemGroup>
 
 </Project>

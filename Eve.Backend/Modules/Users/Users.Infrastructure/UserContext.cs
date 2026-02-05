@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Users.Domain.Interfaces;
+
+namespace Users.Infrastructure
+{
+    public class UserContext : DbContext
+    {
+        public UserContext(DbContextOptions<UserContext> options)
+            : base(options) { }
+
+        public DbSet<User> User { get; set; }
+        public DbSet<UserIdentity> UserIdentity { get; set; }
+        public DbSet<UserSettings> UserSettings { get; set; }
+        public DbSet<GDPR> UserGDPR { get; set; }
+    }
+}
