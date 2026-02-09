@@ -19,6 +19,7 @@ namespace Users.Application.Services
             _userRepository = userRepository;
         }
 
+        /// <inheritdoc />
         public async Task<UserBasicResponseDto> GetUserAsync(int id, CancellationToken ct)
         {
             var user = await _userRepository.GetAsync(id, ct);
@@ -36,6 +37,7 @@ namespace Users.Application.Services
             return user.ToBasicDto();
         }
 
+        /// <inheritdoc />
         public async Task<UserFullResponseDto> GetUserFullAsync(int id, CancellationToken ct)
         {
             var user = await _userRepository.GetAsync(id, ct);
@@ -65,6 +67,7 @@ namespace Users.Application.Services
             return user.ToFullDto(subId);
         }
 
+        /// <inheritdoc />
         public async Task<UserIdentityResponseDto> GetUserIdentity(int id, CancellationToken ct)
         {
             var identity = await _userRepository.GetUserIdentityAsync(id, ct);
@@ -84,6 +87,7 @@ namespace Users.Application.Services
             return identity.ToIdentityDto(subId);
         }
 
+        /// <inheritdoc />
         public async Task<UserSettingsResponseDto> GetUserSettings(int id, CancellationToken ct)
         {
             var settings = await _userRepository.GetUserSettingsAsync(id, ct);
@@ -98,6 +102,7 @@ namespace Users.Application.Services
 
         // soft delete
         // todo - create scheduler to delete soft deleted users after 30 days
+        /// <inheritdoc />
         public async Task<bool> DeleteUserAsync(int id, string password, CancellationToken ct)
         {
             var user = await _userRepository.GetFullUserAsync(id, ct);
@@ -127,7 +132,8 @@ namespace Users.Application.Services
             return await _userRepository.SaveChangesAsync(ct);
         }
 
-        // todo: dodělej validaci vstpních dat
+        // todo: dodělej validaci vstupních dat
+        /// <inheritdoc />
         public async Task<UserUpdateResponseDto?> UpdateUserAsync(int id, UpdateProfileRequestDto request, CancellationToken ct)
         {
             var user = await _userRepository.GetFullUserAsync(id, ct);
@@ -155,6 +161,7 @@ namespace Users.Application.Services
             return new UserUpdateResponseDto() { NewEmail = user.Email, NewPhoneNumber = user.PhoneNumber ?? string.Empty };
         }
 
+        /// <inheritdoc />
         public async Task<bool> UpdateUserPasswordAsync(int id, ChangePasswordRequestDto request, CancellationToken ct)
         {
             var user = await _userRepository.GetFullUserAsync(id, ct);

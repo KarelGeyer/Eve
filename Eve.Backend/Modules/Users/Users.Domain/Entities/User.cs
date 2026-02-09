@@ -6,6 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace Domain.Entities
 {
+    /// <summary>
+    /// Represents an application user, including identification, contact information, and related settings.
+    /// </summary>
+    /// <remarks>The User class provides core user profile data and links to associated settings and identity
+    /// information. Use this type to access or modify user details within the application. Related properties such as
+    /// Settings, Identity, and GDPR contain additional user-specific configuration and compliance
+    /// information.</remarks>
     public class User
     {
         public int Id { get; set; }

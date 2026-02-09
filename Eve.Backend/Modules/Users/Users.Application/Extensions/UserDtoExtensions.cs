@@ -7,6 +7,9 @@ using Users.Application.Dtos.ResponseDtos;
 
 namespace Users.Application.Extensions
 {
+    /// <summary>
+    /// Extension methods for converting User entities to various Data Transfer Objects (DTOs) used in the application layer.
+    /// </summary>
     public static class UserDtoExtensions
     {
         public static UserBasicResponseDto ToBasicDto(this User user)
@@ -50,10 +53,7 @@ namespace Users.Application.Extensions
             };
         }
 
-        public static UserIdentityResponseDto ToIdentityDto(
-            this UserIdentity identity,
-            string subId
-        )
+        public static UserIdentityResponseDto ToIdentityDto(this UserIdentity identity, string subId)
         {
             return new UserIdentityResponseDto()
             {

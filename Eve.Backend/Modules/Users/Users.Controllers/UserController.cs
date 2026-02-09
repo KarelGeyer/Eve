@@ -10,9 +10,22 @@ using Users.Application.Interfaces;
 
 namespace Controllers
 {
+    /// <summary>
+    /// Provides API endpoints for authenticated users to retrieve and manage their profile information, settings,
+    /// identity, and account status.
+    /// </summary>
+    /// <remarks>All endpoints require user authentication and return responses in JSON format. The controller
+    /// supports operations such as retrieving basic and full user details, updating profile and password, accessing
+    /// user settings and identity, and marking the user account for deletion. Deletion is scheduled and the user will
+    /// be unable to log in during the waiting period. Standard HTTP status codes are used to indicate success,
+    /// unauthorized access, not found, too many requests, and server errors.</remarks>
     [Route("api/")]
     [ApiController]
+    [ProducesResponseType(StatusCodes.Status429TooManyRequests)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [Produces("application/json")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -34,10 +47,7 @@ namespace Controllers
         /// An <see cref="ActionResult"/> containing a <see cref="UserBasicResponseDto"/>.
         /// </returns>
         [HttpGet("user")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserBasicResponseDto))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<UserBasicResponseDto>> GetUser(CancellationToken ct)
         {
             var user = await _userService.GetUserAsync(User.GetUserId(), ct);
@@ -54,10 +64,7 @@ namespace Controllers
         /// An <see cref="ActionResult"/> containing a <see cref="UserFullResponseDto"/>.
         /// </returns>
         [HttpGet("user/full")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserFullResponseDto))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<UserFullResponseDto>> GetFullUser(CancellationToken ct)
         {
             var user = await _userService.GetUserFullAsync(User.GetUserId(), ct);
@@ -74,10 +81,7 @@ namespace Controllers
         /// An <see cref="ActionResult"/> containing a <see cref="UserSettingsResponseDto"/>.
         /// </returns>
         [HttpGet("user/settings")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserSettingsResponseDto))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<UserSettingsResponseDto>> GetUserSettings(CancellationToken ct)
         {
             var settings = await _userService.GetUserSettings(User.GetUserId(), ct);
@@ -94,10 +98,7 @@ namespace Controllers
         /// An <see cref="ActionResult"/> containing a <see cref="UserIdentityResponseDto"/>.
         /// </returns>
         [HttpGet("user/identity")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserIdentityResponseDto))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<ActionResult<UserIdentityResponseDto>> GetUserIdentity(CancellationToken ct)
         {
             var identity = await _userService.GetUserIdentity(User.GetUserId(), ct);
@@ -111,12 +112,12 @@ namespace Controllers
         /// <param name="ct">Cancellation token used to cancel the request.</param>
         /// <returns>An ActionResult containing a UserUpdateResponseDto.</returns>
         [HttpPatch("user")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserUpdateResponseDto))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<UserUpdateResponseDto>> UpdateUserInfo([FromBody] UpdateProfileRequestDto request, CancellationToken ct)
+        public async Task<ActionResult<UserUpdateResponseDto>> UpdateUserInfo(
+            [FromBody] UpdateProfileRequestDto request,
+            CancellationToken ct
+        )
         {
             var response = await _userService.UpdateUserAsync(User.GetUserId(), request, ct);
             return Ok(response);
@@ -129,12 +130,12 @@ namespace Controllers
         /// <param name="ct">Cancellation token used to cancel the request.</param>
         /// <returns>An ActionResult containing a UserUpdateResponseDto.</returns>
         [HttpPut("user")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ChangePasswordRequestDto))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<bool>> UpdateUserPassword([FromBody] ChangePasswordRequestDto request, CancellationToken ct)
+        public async Task<ActionResult<bool>> UpdateUserPassword(
+            [FromBody] ChangePasswordRequestDto request,
+            CancellationToken ct
+        )
         {
             var response = await _userService.UpdateUserPasswordAsync(User.GetUserId(), request, ct);
             return Ok(response);
@@ -148,10 +149,7 @@ namespace Controllers
         /// <param name="ct">Cancellation token used to cancel the request.</param>
         /// <returns>An ActionResult containing a UserUpdateResponseDto.</returns>
         [HttpDelete("user")]
-        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ChangePasswordRequestDto))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<bool>> DeleteUser([FromBody] string password, CancellationToken ct)
         {
