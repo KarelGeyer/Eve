@@ -6,6 +6,9 @@ using MimeKit;
 
 namespace EmailService
 {
+    /// <summary>
+    /// A service for sending emails using SMTP. It utilizes the MailKit library to handle email composition and transmission.
+    /// </summary>
     public class MailService : IEmailService
     {
         private readonly EmailSettings _settings;
@@ -15,12 +18,8 @@ namespace EmailService
             _settings = settings.Value;
         }
 
-        public async Task SendEmailAsync(
-            string to,
-            string subject,
-            string body,
-            CancellationToken ct
-        )
+        /// <inheritdoc />
+        public async Task SendEmailAsync(string to, string subject, string body, CancellationToken ct)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(_settings.SenderName, _settings.SenderEmail));
@@ -29,12 +28,7 @@ namespace EmailService
             message.Body = new TextPart("html") { Text = body };
 
             using var client = new SmtpClient();
-            await client.ConnectAsync(
-                _settings.Host,
-                _settings.Port,
-                SecureSocketOptions.StartTls,
-                ct
-            );
+            await client.ConnectAsync(_settings.Host, _settings.Port, SecureSocketOptions.StartTls, ct);
 
             await client.AuthenticateAsync(_settings.Username, _settings.Password, ct);
             await client.SendAsync(message, ct);

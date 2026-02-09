@@ -4,6 +4,9 @@ using System.Text;
 
 namespace EmailService
 {
+    /// <summary>
+    /// A class representing the configuration settings required for sending emails, including SMTP server details and sender information.
+    /// </summary>
     public class EmailSettings
     {
         public string Host { get; set; } = string.Empty;
