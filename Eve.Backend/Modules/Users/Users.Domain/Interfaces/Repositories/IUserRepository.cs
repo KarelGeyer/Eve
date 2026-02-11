@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Users.Domain.Entities;
 
 namespace Users.Domain.Interfaces.Reposiroties
 {
@@ -111,6 +112,13 @@ namespace Users.Domain.Interfaces.Reposiroties
         /// <returns>The task result contains the user settings if the token
         /// is valid; otherwise, null.</returns>
         Task<UserSettings?> GetUserSettingsByTokenAsync(string token, CancellationToken ct);
+
+        /// <summary>
+        /// Updates user settings.
+        /// </summary>
+        /// <param name="settings">User settings to be updated. Cannot be null or empty.</param>
+        /// <returns>True if settings were updated</returns>
+        bool UpdateUserSettings(UserSettings settings);
 
         /// <summary>
         /// Activates a user account asynchronously using the specified activation token.

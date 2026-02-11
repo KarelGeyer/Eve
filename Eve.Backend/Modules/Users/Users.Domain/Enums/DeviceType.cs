@@ -14,5 +14,8 @@ namespace Users.Domain.Enums
     {
         Android = 1,
         iOS = 2,
+        Web = 3,
+        Tv = 4,
+        SmartWatch = 5,
     }
 }

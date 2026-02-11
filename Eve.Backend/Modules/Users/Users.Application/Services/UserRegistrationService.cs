@@ -121,8 +121,7 @@ namespace Users.Application.Services
 
             string activationLink =
                 $"{Common.Shared.Constants.Global.DevUrl}{Common.Shared.Constants.Global.ActivationEndpoint}?token={activationToken}";
-            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "ActivationEmail.html");
-            string template = await File.ReadAllTextAsync(templatePath, ct);
+            string template = await _emailService.GetEmailTemplate("ActivationEmail.html", ct);
             string htmlBody = template.Replace("{{ActivationLink}}", activationLink);
 
             await _emailService.SendEmailAsync(to: request.Email, subject: "Activate your account", body: htmlBody, ct: ct);

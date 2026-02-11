@@ -4,7 +4,6 @@ using System.Text;
 using Common.Shared.Exceptions;
 using Users.Application.Dtos.Requests;
 using Users.Application.Dtos.ResponseDtos;
-using Users.Domain.Exceptions;
 
 namespace Users.Application.Interfaces
 {

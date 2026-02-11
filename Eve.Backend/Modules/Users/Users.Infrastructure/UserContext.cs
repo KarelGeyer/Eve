@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Users.Domain.Entities;
 using Users.Domain.Interfaces;
 
 namespace Users.Infrastructure
@@ -16,5 +17,6 @@ namespace Users.Infrastructure
         public DbSet<UserIdentity> UserIdentity { get; set; }
         public DbSet<UserSettings> UserSettings { get; set; }
         public DbSet<GDPR> UserGDPR { get; set; }
+        public DbSet<UserSession> UserSessions { get; set; }
     }
 }

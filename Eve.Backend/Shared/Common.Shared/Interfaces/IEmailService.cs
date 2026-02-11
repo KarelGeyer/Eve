@@ -16,5 +16,13 @@ namespace Common.Shared.Interfaces
         /// <param name="ct"></param>
         /// <returns>A Task</returns>
         Task SendEmailAsync(string to, string subject, string body, CancellationToken ct);
+
+        /// <summary>
+        /// A method for retrieving an email template asynchronously.
+        /// </summary>
+        /// <param name="templateName"></param>
+        /// <param name="ct"></param>
+        /// <returns>A Task</returns>
+        Task<string> GetEmailTemplate(string templateName, CancellationToken ct);
     }
 }

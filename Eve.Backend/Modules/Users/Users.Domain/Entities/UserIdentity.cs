@@ -20,23 +20,21 @@ namespace Domain.Entities
         /// Gets or sets the unique identifier associated with the Google account subscription.
         /// </summary>
         public string GoogleSubId { get; set; } = null!;
+        public string GoogleSubEmail { get; set; } = null!;
+        public DateTime? GoogleSubCreatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets the Apple subscription identifier associated with the user or transaction.
         /// </summary>
         public string AppleSubId { get; set; } = null!;
+        public string AppleSubEmail { get; set; } = null!;
+        public DateTime? AppleSubCreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets the refresh token used to obtain a new access token when the current one expires.
+        /// Reference to a device identifier, relatedTo <see cref="UserSession"/>
         /// </summary>
-        public string RefreshToken { get; set; } = null!;
-
-        /// <summary>
-        /// Gets or sets the unique token used to identify the device for authentication or push notification purposes.
-        /// </summary>
-        public string DeviceToken { get; set; } = null!;
-        public string DeviceType { get; set; } = null!;
-        public string PasswordHash { get; set; } = null!;
+        public string LastLoginWith { get; set; } = null!;
+        public DateTime? UpdatedAt { get; set; }
 
         public virtual User User { get; set; } = null!;
     }

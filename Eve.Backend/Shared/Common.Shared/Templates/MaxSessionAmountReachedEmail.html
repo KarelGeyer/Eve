@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dosažen limit aktivních relací</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            background-color: #f4f4f7;
+            color: #51545e;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f4f7;
+            padding-bottom: 40px;
+        }
+
+        .main {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #f89406;
+            padding: 25px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .content {
+            padding: 30px;
+            line-height: 1.6;
+        }
+
+        .alert-box {
+            border-left: 4px solid #f89406;
+            background-color: #fff9f0;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #a8aaaf;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            background-color: #222e3e;
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <table class="main">
+            <tr>
+                <td class="header">
+                    <h1 style="margin:0;">Upozornění na limit přihlášení</h1>
+                </td>
+            </tr>
+            <tr>
+                <td class="content">
+                    <p>Dobrý den,</p>
+                    <p>Právě jste se přihlásili z nového zařízení, čímž jste dosáhli <strong>maximálního povoleného počtu 5 aktivních relací</strong>.</p>
+
+                    <div class="alert-box">
+                        <strong>Co se stalo?</strong><br>
+                        Abychom vám umožnili aktuální přihlášení, vaše nejstarší relace byla automaticky ukončena.
+                    </div>
+
+                    <p>Pokud svá aktivní zařízení nepoznáváte nebo chcete mít nad přístupy plnou kontrolu, doporučujeme provést kontrolu v nastavení zabezpečení.</p>
+                </td>
+            </tr>
+        </table>
+        <div class="footer">
+            <p>Tento e-mail byl odeslán automaticky systémem pro zabezpečení účtu.</p>
+            <p>&copy; 2026 Eve System</p>
+        </div>
+    </div>
+</body>
+</html>

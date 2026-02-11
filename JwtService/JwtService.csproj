@@ -12,8 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\Common.Shared\Common.Shared.csproj" />
-    <ProjectReference Include="..\Users.Domain\Users.Domain.csproj" />
+    <ProjectReference Include="..\Eve.Backend\Shared\Common.Shared\Common.Shared.csproj" />
   </ItemGroup>
 
 </Project>

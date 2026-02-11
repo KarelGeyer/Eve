@@ -57,16 +57,6 @@ namespace Eve.API.Extensions
                     }
                 );
 
-                options.AddFixedWindowLimiter(
-                    "extreme",
-                    opt =>
-                    {
-                        opt.Window = TimeSpan.FromMinutes(1);
-                        opt.PermitLimit = 1;
-                        opt.QueueLimit = 0;
-                    }
-                );
-
                 options.OnRejected = async (context, token) =>
                 {
                     context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;

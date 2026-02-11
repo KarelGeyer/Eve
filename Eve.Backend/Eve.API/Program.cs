@@ -1,7 +1,13 @@
+using System.Text;
 using Common.Shared.Interfaces;
+using Common.Shared.Models;
 using EmailService;
 using Eve.API.Extensions;
 using Eve.API.Middlewares;
+using Eve.API.ServiceAccessors;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
+using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using Users.Application.Models;
 
@@ -21,10 +27,18 @@ builder.Services.AddAppRateLimiting(builder.Configuration);
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Email"));
 builder.Services.AddTransient<IEmailService, MailService>();
 
+//*** JWT Authentication ***//
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
 //*** Middleware ***//
 builder.Services.AddHttpContextAccessor();
 
 //*** DI ***//
+// Add detection
+builder.Services.AddDetection();
+
+// Add modules services
+builder.Services.AddModulesServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -37,9 +51,11 @@ if (app.Environment.IsDevelopment())
 }
 
 //*** Middleware ***//
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseMiddleware<HeadersMiddleware>();
 app.UseMiddleware<CorrelationIdMiddleware>();
-app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseDetection();
 
 app.UseHttpsRedirection();
 app.UseRouting();

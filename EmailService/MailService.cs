@@ -18,6 +18,12 @@ namespace EmailService
             _settings = settings.Value;
         }
 
+        public async Task<string> GetEmailTemplate(string templateName, CancellationToken ct)
+        {
+            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "NewLoginEmail.html");
+            return await File.ReadAllTextAsync(templatePath, ct);
+        }
+
         /// <inheritdoc />
         public async Task SendEmailAsync(string to, string subject, string body, CancellationToken ct)
         {

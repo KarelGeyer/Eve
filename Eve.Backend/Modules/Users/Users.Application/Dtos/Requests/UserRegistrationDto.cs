@@ -12,7 +12,6 @@ namespace Users.Application.Dtos.Requests
         public string Password { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public DateTime DateOfBirth { get; set; }
-        public DeviceType DeviceType { get; set; }
         public bool AgreedToTos { get; set; }
         public bool AgreedToGdpr { get; set; }
     }

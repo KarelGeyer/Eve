@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Common.Shared.Response;
 using Domain.Entities;
 using Users.Application.Dtos.Requests;
 using Users.Application.Dtos.ResponseDtos;

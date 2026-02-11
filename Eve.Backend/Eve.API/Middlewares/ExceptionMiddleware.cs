@@ -23,7 +23,15 @@ namespace Eve.API.Middlewares
             }
             catch (SecurityException ex)
             {
-                await WriteErrorResponse(context, StatusCodes.Status400BadRequest, ex.Message); //
+                await WriteErrorResponse(context, StatusCodes.Status400BadRequest, ex.Message);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                await WriteErrorResponse(context, StatusCodes.Status401Unauthorized, ex.Message);
+            }
+            catch (ForbidenException ex)
+            {
+                await WriteErrorResponse(context, StatusCodes.Status403Forbidden, ex.Message);
             }
             catch (EntityNotFoundException ex)
             {
@@ -31,7 +39,11 @@ namespace Eve.API.Middlewares
             }
             catch (EntityAlreadyExistsException ex)
             {
-                await WriteErrorResponse(context, StatusCodes.Status409Conflict, ex.Message); //
+                await WriteErrorResponse(context, StatusCodes.Status409Conflict, ex.Message);
+            }
+            catch (AccountLockedException ex)
+            {
+                await WriteErrorResponse(context, StatusCodes.Status423Locked, ex.Message);
             }
             catch (ActionFailedException ex)
             {
@@ -40,7 +52,7 @@ namespace Eve.API.Middlewares
             catch (Exception ex)
             {
                 // Tady logujeme (Serilogem), ale uživateli vracíme jen obecnou zprávu
-                await WriteErrorResponse(context, StatusCodes.Status500InternalServerError, "Internal Server Error.");
+                await WriteErrorResponse(context, StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -48,7 +60,6 @@ namespace Eve.API.Middlewares
         {
             context.Response.StatusCode = statusCode;
 
-            // Vytáhneme GUID přes náš helper
             var correlationId = CorrelationIdAccessor.GetGuid(context);
 
             var errorResponse = new { error = message, correlationId };

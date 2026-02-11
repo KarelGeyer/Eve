@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Users.Domain.Entities;
 using Users.Domain.Interfaces.Reposiroties;
 using Users.Infrastructure;
 
@@ -43,6 +44,7 @@ namespace Infrastructure.Repositories
                 .User.Where(u => u.Id == id)
                 .Include(u => u.Settings)
                 .Include(u => u.Identity)
+                .Include(u => u.Sessions)
                 .FirstOrDefaultAsync(ct);
 
             if (user == null)
@@ -58,6 +60,7 @@ namespace Infrastructure.Repositories
                 .User.Where(u => u.Email == email)
                 .Include(u => u.Settings)
                 .Include(u => u.Identity)
+                .Include(u => u.Sessions)
                 .FirstOrDefaultAsync(ct);
 
             if (user == null)
@@ -135,6 +138,7 @@ namespace Infrastructure.Repositories
         }
 
         /// <inheritdoc/>
+        ///
         public User? Add(User user)
         {
             if (user == null)

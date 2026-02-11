@@ -18,6 +18,7 @@ namespace Users.Controllers
     [Route("api/")]
     [ApiController]
     [ProducesResponseType(StatusCodes.Status429TooManyRequests)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [Produces("application/json")]
     public class RegistrationController : ControllerBase
@@ -40,6 +41,8 @@ namespace Users.Controllers
         [HttpPost("user-registration")]
         [AllowAnonymous]
         [EnableRateLimiting("strict")]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<bool>> RegisterUser([FromBody] UserRegistrationRequestDto request, CancellationToken ct)
         {
             var registered = await _registrationService.RegisterUserAsync(request, ct);
@@ -74,7 +77,8 @@ namespace Users.Controllers
         /// </returns>
         [HttpPost("user-resend-email")]
         [AllowAnonymous]
-        [EnableRateLimiting("extreme")]
+        [EnableRateLimiting("strict")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<bool>> ResendActivationEmail([FromBody] string email, CancellationToken ct)
         {
             var emailResent = await _registrationService.ResendActivationEmailAsync(email, ct);

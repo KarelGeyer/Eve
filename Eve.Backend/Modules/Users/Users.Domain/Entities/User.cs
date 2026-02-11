@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
+using Users.Domain.Entities;
 
 namespace Domain.Entities
 {
@@ -20,9 +21,11 @@ namespace Domain.Entities
         public string Email { get; set; } = null!;
         public string? PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public string PasswordHash { get; set; } = null!;
 
         public virtual UserSettings? Settings { get; set; } = null;
         public virtual UserIdentity? Identity { get; set; } = null;
         public virtual GDPR? GDPR { get; set; } = null;
+        public virtual ICollection<UserSession> Sessions { get; set; } = new List<UserSession>();
     }
 }
