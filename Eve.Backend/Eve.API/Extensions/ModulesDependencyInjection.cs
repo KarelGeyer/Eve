@@ -1,5 +1,4 @@
-﻿using Common.Shared.Interfaces;
-using Eve.API.ServiceAccessors;
+﻿using Eve.API.ServiceAccessors;
 using Users.Application;
 using Users.Application.Interfaces;
 using Users.Infrastructure;

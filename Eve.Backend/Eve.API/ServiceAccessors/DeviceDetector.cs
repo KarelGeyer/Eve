@@ -1,5 +1,4 @@
-﻿using Common.Shared.Interfaces;
-using Common.Shared.Models;
+﻿using Common.Shared.Models;
 using Users.Application.Interfaces;
 using Wangkanai.Detection.Services;
 

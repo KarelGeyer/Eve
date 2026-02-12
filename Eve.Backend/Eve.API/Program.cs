@@ -1,13 +1,7 @@
-using System.Text;
 using Common.Shared.Interfaces;
-using Common.Shared.Models;
 using EmailService;
 using Eve.API.Extensions;
 using Eve.API.Middlewares;
-using Eve.API.ServiceAccessors;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
-using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using Users.Application.Models;
 
@@ -15,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddHttpClient();
 
 //*** Manage Secrets ***//
 // Naplnìní ExternalSettings -> User.Application

@@ -51,7 +51,6 @@ namespace Eve.API.Middlewares
             }
             catch (Exception ex)
             {
-                // Tady logujeme (Serilogem), ale uživateli vracíme jen obecnou zprávu
                 await WriteErrorResponse(context, StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
