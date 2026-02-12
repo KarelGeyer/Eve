@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using BCrypt.Net;
+﻿using System.Security.Cryptography;
 
 namespace Common.Shared.Helpers
 {
@@ -32,7 +29,7 @@ namespace Common.Shared.Helpers
         public static string Hash(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
-                throw new ArgumentException("Heslo nesmí být prázdné.");
+                throw new ArgumentException("Password must not be empty.");
 
             return BCrypt.Net.BCrypt.HashPassword(password, WorkFactor);
         }
@@ -56,6 +53,27 @@ namespace Common.Shared.Helpers
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Generates a solid temporary password for the user
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns>a valid password of given length</returns>
+        public static string GenerateTemporaryPassword(int length)
+        {
+            const string validChars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789!@$?_-";
+            return string.Create(
+                length,
+                validChars,
+                (span, chars) =>
+                {
+                    for (int i = 0; i < span.Length; i++)
+                    {
+                        span[i] = chars[RandomNumberGenerator.GetInt32(chars.Length)];
+                    }
+                }
+            );
         }
     }
 }

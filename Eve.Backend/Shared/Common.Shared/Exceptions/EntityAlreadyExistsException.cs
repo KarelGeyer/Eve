@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common.Shared.Exceptions
+﻿namespace Common.Shared.Exceptions
 {
     /// <summary>
     /// Represents an exception that is thrown when an attempt is made to create an entity that already exists.

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
+﻿using System.Security.Claims;
 
 namespace Common.Shared.Extensions
 {
+    //todo: use everywhere userId is needed and is available
     public static class ClaimsPrincipalExtensions
     {
         public static int GetUserId(this ClaimsPrincipal user)
@@ -14,9 +12,7 @@ namespace Common.Shared.Extensions
             {
                 return userId;
             }
-            throw new InvalidOperationException(
-                "User ID is missing or not a valid integer in the current token."
-            );
+            throw new InvalidOperationException("User ID is missing or not a valid integer in the current token.");
         }
     }
 }

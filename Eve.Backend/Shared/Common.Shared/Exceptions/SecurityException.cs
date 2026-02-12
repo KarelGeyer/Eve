@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common.Shared.Exceptions
+﻿namespace Common.Shared.Exceptions
 {
     /// <summary>
     /// Represents an error that occurs when a security violation is detected for a specific entity type.

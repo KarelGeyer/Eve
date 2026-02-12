@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common.Shared.Exceptions
+﻿namespace Common.Shared.Exceptions
 {
     public class AccountLockedException : Exception
     {

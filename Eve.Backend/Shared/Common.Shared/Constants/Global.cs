@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Common.Shared.Constants
+﻿namespace Common.Shared.Constants
 {
     public class Global
     {
