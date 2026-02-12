@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Users.Domain.Enums;
-
-namespace Users.Application.Dtos.Requests
+﻿namespace Users.Application.Dtos.Requests
 {
     public class UserRegistrationRequestDto
     {
@@ -14,5 +9,8 @@ namespace Users.Application.Dtos.Requests
         public DateTime DateOfBirth { get; set; }
         public bool AgreedToTos { get; set; }
         public bool AgreedToGdpr { get; set; }
+        public string PrefferedLanguage { get; set; } = string.Empty;
+        public int SecurityQuestion { get; set; }
+        public string SecurityAnswer { get; set; } = string.Empty;
     }
 }

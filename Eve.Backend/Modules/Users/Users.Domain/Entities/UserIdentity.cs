@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
     /// <summary>
     /// Represents a user's authentication and device identity information, including platform-specific identifiers and
@@ -33,7 +29,7 @@ namespace Domain.Entities
         /// <summary>
         /// Reference to a device identifier, relatedTo <see cref="UserSession"/>
         /// </summary>
-        public string LastLoginWith { get; set; } = null!;
+        public Guid LastLoginWith { get; set; }
         public DateTime? UpdatedAt { get; set; }
 
         public virtual User User { get; set; } = null!;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Principal;
-using System.Text;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Users.Application.Dtos.ResponseDtos;
 
 namespace Users.Application.Extensions
@@ -29,7 +25,7 @@ namespace Users.Application.Extensions
             };
         }
 
-        public static UserFullResponseDto ToFullDto(this User user, string subId)
+        public static UserFullResponseDto ToFullDto(this User user)
         {
             return new UserFullResponseDto
             {
@@ -43,13 +39,13 @@ namespace Users.Application.Extensions
                 IsActive = user.Settings!.IsActive,
                 IsEmailVerified = user.Settings!.IsEmailVerified,
                 LastSignedIn = user.Settings!.LastSignedIn,
-                UbblockDateTime = user.Settings!.UnblockDateTime,
+                UnblockDateTime = user.Settings!.UnblockDateTime,
                 LoginAttempts = user.Settings!.LoginAttempts,
 
-                SubId = subId,
-                RefreshToken = user.Identity!.RefreshToken,
-                DeviceToken = user.Identity!.DeviceToken,
-                DeviceType = user.Identity!.DeviceType,
+                GoogleSubId = user.Identity!.GoogleSubId,
+                AppleSubId = user.Identity!.AppleSubId,
+
+                Sessions = user.Sessions.ToList(),
             };
         }
 
@@ -57,10 +53,9 @@ namespace Users.Application.Extensions
         {
             return new UserIdentityResponseDto()
             {
-                SubId = subId,
-                RefreshToken = identity!.RefreshToken,
-                DeviceToken = identity!.DeviceToken,
-                DeviceType = identity!.DeviceType,
+                GoogleSubId = identity!.GoogleSubId,
+                AppleSubId = identity!.AppleSubId,
+                LastLoginWith = identity!.LastLoginWith,
             };
         }
 
@@ -69,15 +64,22 @@ namespace Users.Application.Extensions
             return new UserSettingsResponseDto()
             {
                 LastAppVersion = settings!.LastAppVersion,
-                LastPlatform = settings!.LastPlatform,
+                AreNotificationsEnabled = settings!.NotificationEnabled,
                 IsEmailNotificationsEnabled = settings!.EmailNotificationEnabled,
-                IsSmsNotificationsEnabled = settings!.NotificationEnabled,
+                IsNewsNotificationsEnabled = settings!.NotificationEnabled,
                 IsBlocked = settings!.IsBlocked,
                 IsActive = settings!.IsActive,
                 IsEmailVerified = settings!.IsEmailVerified,
                 UnlockDateTime = settings!.UnblockDateTime,
                 LastSignedIn = settings!.LastSignedIn,
                 LoginAttempts = settings!.LoginAttempts,
+                PrefferedLanguage = settings!.PrefferedLanguage,
+                Theme = settings!.Theme,
+                TimeZone = settings!.Timezone,
+                TwoFactorEnabled = settings!.TwoFactorEnabled,
+                SecurityQuestion = settings!.SecurityQuestion,
+                SecurityAnswer = settings!.SecurityAnswer,
+                MustChangePassword = settings!.MustChangePassword,
             };
         }
     }

@@ -5,14 +5,13 @@ using Users.Application.Dtos.Requests;
 using Users.Application.Dtos.ResponseDtos;
 using Users.Application.Extensions;
 using Users.Application.Interfaces;
-using Users.Domain.Exceptions;
 using Users.Domain.Interfaces.Reposiroties;
 
 namespace Users.Application.Services
 {
     public class UserService : IUserService
     {
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
         public UserService(IUserRepository userRepository)
         {
@@ -57,14 +56,7 @@ namespace Users.Application.Services
                 throw new EntityNotFoundException(nameof(UserIdentity), $"User Identity with userId {id}  not found");
             }
 
-            var subId = string.Empty;
-
-            if (user.Identity.GoogleSubId != null)
-                subId = user.Identity.GoogleSubId;
-            if (user.Identity.AppleSubId != null)
-                subId = user.Identity.AppleSubId;
-
-            return user.ToFullDto(subId);
+            return user.ToFullDto();
         }
 
         /// <inheritdoc />
@@ -120,7 +112,7 @@ namespace Users.Application.Services
                 throw new EntityNotFoundException(nameof(UserIdentity), $"User Identity with userId {id} not found");
             }
 
-            if (!PasswordManager.Verify(password, user.Identity.PasswordHash))
+            if (!PasswordManager.Verify(password, user.PasswordHash))
                 return false;
 
             user.Settings.IsActive = false;
@@ -146,7 +138,7 @@ namespace Users.Application.Services
                 throw new EntityNotFoundException(nameof(UserIdentity), $"User Identity with userId {id} not found");
             }
 
-            if (!PasswordManager.Verify(request.CurrentPassword, user.Identity.PasswordHash))
+            if (!PasswordManager.Verify(request.CurrentPassword, user.PasswordHash))
                 return null;
 
             user.Email = request.NewEmail ?? user.Email;
@@ -174,10 +166,10 @@ namespace Users.Application.Services
                 throw new EntityNotFoundException(nameof(UserIdentity), $"User Identity with userId {id} not found");
             }
 
-            if (!PasswordManager.Verify(request.CurrentPassword, user.Identity.PasswordHash))
+            if (!PasswordManager.Verify(request.CurrentPassword, user.PasswordHash))
                 return false;
 
-            user.Identity.PasswordHash = PasswordManager.Hash(request.NewPassword);
+            user.PasswordHash = PasswordManager.Hash(request.NewPassword);
 
             _userRepository.Update(user);
 

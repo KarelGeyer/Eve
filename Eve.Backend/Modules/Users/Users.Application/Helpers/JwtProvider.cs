@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 using Common.Shared.Models;
 using Domain.Entities;
@@ -16,6 +13,7 @@ namespace Users.Application.Helpers
     {
         private readonly JwtSettings _settings = options.Value;
 
+        /// <inheritdoc/>
         public string GenerateAccessToken(User user, string sessionId)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Secret));

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Users.Domain.Enums
+﻿namespace Users.Domain.Enums
 {
     /// <summary>
     /// Specifies the supported device types for platform-specific operations.

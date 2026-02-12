@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-using Common.Shared.Exceptions;
-using Common.Shared.Extensions;
+﻿using Common.Shared.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Users.Application.Dtos.Requests;
-using Users.Application.Dtos.ResponseDtos;
 using Users.Application.Interfaces;
 
 namespace Users.Controllers
@@ -17,13 +16,14 @@ namespace Users.Controllers
     /// returned in JSON format, and a 429 status code is returned if rate limits are exceeded.</remarks>
     [Route("api/")]
     [ApiController]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status429TooManyRequests)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [Produces("application/json")]
     public class RegistrationController : ControllerBase
     {
-        IUserRegistrationService _registrationService;
+        private readonly IUserRegistrationService _registrationService;
 
         public RegistrationController(IUserRegistrationService registrationService)
         {
@@ -39,7 +39,6 @@ namespace Users.Controllers
         /// An <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost("user-registration")]
-        [AllowAnonymous]
         [EnableRateLimiting("strict")]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -58,7 +57,6 @@ namespace Users.Controllers
         /// An <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost("user-activation")]
-        [AllowAnonymous]
         [EnableRateLimiting("strict")]
         public async Task<ActionResult<bool>> ActivateUser([FromQuery] string token, CancellationToken ct)
         {
@@ -76,7 +74,6 @@ namespace Users.Controllers
         /// An <see cref="ActionResult"/>.
         /// </returns>
         [HttpPost("user-resend-email")]
-        [AllowAnonymous]
         [EnableRateLimiting("strict")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<bool>> ResendActivationEmail([FromBody] string email, CancellationToken ct)

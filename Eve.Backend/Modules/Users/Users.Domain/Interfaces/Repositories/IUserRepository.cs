@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Entities;
-using Users.Domain.Entities;
+﻿using Domain.Entities;
 
 namespace Users.Domain.Interfaces.Reposiroties
 {

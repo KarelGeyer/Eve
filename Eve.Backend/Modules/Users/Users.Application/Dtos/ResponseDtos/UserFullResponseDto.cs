@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Users.Domain.Entities;
 
 namespace Users.Application.Dtos.ResponseDtos
 {
@@ -20,15 +18,16 @@ namespace Users.Application.Dtos.ResponseDtos
         public bool IsActive { get; set; }
         public bool IsEmailVerified { get; set; }
         public DateTime LastSignedIn { get; set; }
-        public DateTime UbblockDateTime { get; set; }
+        public DateTime? UnblockDateTime { get; set; }
         public int LoginAttempts { get; set; }
         #endregion
 
         #region Identity
-        public string SubId { get; set; } = null!;
-        public string RefreshToken { get; set; } = null!;
-        public string DeviceToken { get; set; } = null!;
-        public string DeviceType { get; set; } = null!;
+        public string GoogleSubId { get; set; } = null!;
+        public string AppleSubId { get; set; } = null!;
+        public Guid LastLoginWith { get; set; }
         #endregion
+
+        public List<UserSession> Sessions { get; set; } = new List<UserSession>();
     }
 }

@@ -4,11 +4,11 @@ using Common.Shared.Exceptions;
 using Common.Shared.Helpers;
 using Common.Shared.Interfaces;
 using Domain.Entities;
+using Microsoft.Extensions.Options;
 using Users.Application.Dtos;
 using Users.Application.Dtos.Requests;
 using Users.Application.Interfaces;
 using Users.Application.Models;
-using Users.Domain.Exceptions;
 using Users.Domain.Interfaces.Reposiroties;
 
 namespace Users.Application.Services
@@ -24,13 +24,13 @@ namespace Users.Application.Services
             IUserRepository userRepository,
             IEmailService emailService,
             HttpClient httpClient,
-            ExternalSettings externalSettings
+            IOptions<ExternalSettings> externalSettings
         )
         {
             _userRepository = userRepository;
             _emailService = emailService;
             _httpClient = httpClient;
-            _externalSettings = externalSettings;
+            _externalSettings = externalSettings.Value;
         }
 
         /// <inheritdoc />
@@ -40,7 +40,7 @@ namespace Users.Application.Services
 
             if (affectedRows == 0)
             {
-                throw new SecurityException("Aktivace se nezdařila. Odkaz je neplatný, expirovaný nebo již byl použit.");
+                throw new SecurityException("Activation failed. Link is invalid, expired or was already used.");
             }
 
             return affectedRows;
@@ -198,13 +198,19 @@ namespace Users.Application.Services
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
                 DateOfBirth = request.DateOfBirth,
+                PasswordHash = PasswordManager.Hash(request.Password),
 
                 Settings = new UserSettings
                 {
                     ActivationToken = activationToken,
                     ActivationTokenExpiration = DateTime.UtcNow.AddHours(24),
+                    PrefferedLanguage = request.PrefferedLanguage,
+                    Theme = 0,
+                    Timezone = "UTC",
+                    SecurityQuestion = request.SecurityQuestion,
+                    SecurityAnswer = request.SecurityAnswer,
                 },
-                Identity = new UserIdentity { PasswordHash = PasswordManager.Hash(request.Password) },
+                Identity = new UserIdentity { },
                 GDPR = new GDPR { TosAcceptAt = DateTime.UtcNow, TosVersion = "Todo: add a way to retrieve current version" },
             };
 

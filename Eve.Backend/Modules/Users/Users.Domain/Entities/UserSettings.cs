@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
     /// <summary>
     /// Represents a collection of settings and status information associated with a user account, including
@@ -18,7 +14,6 @@ namespace Domain.Entities
     {
         public int UserId { get; set; }
         public string? LastAppVersion { get; set; }
-        public string? LastPlatform { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the User is currently blocked from accessing the application.
@@ -46,12 +41,13 @@ namespace Domain.Entities
         public bool IsEmailVerified { get; set; } = false;
         public bool NotificationEnabled { get; set; } = true;
         public bool EmailNotificationEnabled { get; set; } = true;
+        public bool NewsNotificationEnabled { get; set; } = true;
         public DateTime LastSignedIn { get; set; } = DateTime.UtcNow;
 
         /// <summary>
         /// Gets or sets the date and time when the block is scheduled to be lifted.
         /// </summary>
-        public DateTime UnblockDateTime { get; set; } = DateTime.UtcNow;
+        public DateTime? UnblockDateTime { get; set; } = null;
 
         /// <summary>
         /// Gets or sets the number of login attempts made by the user.
@@ -70,6 +66,15 @@ namespace Domain.Entities
         /// <remarks>If the value is <see langword="null"/>, the activation token does not expire. Use
         /// this property to determine whether the token is still valid based on the current date and time.</remarks>
         public DateTime? ActivationTokenExpiration { get; set; }
+
+        public string PrefferedLanguage { get; set; } = null!;
+        public int Theme { get; set; }
+        public string Timezone { get; set; } = null!;
+        public bool TwoFactorEnabled { get; set; } = false;
+        public string RecoveryEmail { get; set; } = null!;
+        public int SecurityQuestion { get; set; } = 0;
+        public string SecurityAnswer { get; set; } = null!;
+        public bool MustChangePassword { get; set; } = false;
 
         public virtual User User { get; set; } = null!;
     }

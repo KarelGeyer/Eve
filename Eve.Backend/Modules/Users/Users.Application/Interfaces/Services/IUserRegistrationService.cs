@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Common.Shared.Exceptions;
+﻿using Common.Shared.Exceptions;
 using Users.Application.Dtos.Requests;
-using Users.Application.Dtos.ResponseDtos;
 
 namespace Users.Application.Interfaces
 {

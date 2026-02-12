@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Domain.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Users.Domain.Entities;
 using Users.Domain.Interfaces.Reposiroties;
 using Users.Infrastructure;
 
@@ -169,6 +165,16 @@ namespace Infrastructure.Repositories
                             .SetProperty(s => s.ActivationTokenExpiration, (DateTime?)null),
                     ct
                 );
+        }
+
+        public bool UpdateUserSettings(UserSettings settings)
+        {
+            if (settings == null)
+                return false;
+
+            var result = _context.UserSettings.Update(settings);
+
+            return result != null;
         }
     }
 }

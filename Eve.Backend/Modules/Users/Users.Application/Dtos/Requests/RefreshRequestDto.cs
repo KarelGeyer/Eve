@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Users.Application.Dtos.Requests
+﻿namespace Users.Application.Dtos.Requests
 {
     public class RefreshRequestDto
     {

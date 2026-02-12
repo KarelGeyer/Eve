@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
     /// <summary>
     /// Represents a user's acceptance of GDPR-related terms, including Terms of Service and Privacy Policy, along with

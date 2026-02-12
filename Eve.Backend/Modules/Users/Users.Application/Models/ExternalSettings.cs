@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Users.Application.Models
+﻿namespace Users.Application.Models
 {
     /// <summary>
     /// Externí nastavení z Program.cs nebo appsettings.json.
