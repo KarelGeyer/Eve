@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EmailService
+﻿namespace EmailService
 {
     /// <summary>
     /// A class representing the configuration settings required for sending emails, including SMTP server details and sender information.
