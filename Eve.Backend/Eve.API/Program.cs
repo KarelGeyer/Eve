@@ -1,26 +1,63 @@
+using Common.Shared.Interfaces;
+using EmailService;
+using Eve.API.Extensions;
+using Eve.API.Middlewares;
 using Scalar.AspNetCore;
+using Users.Application.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddHttpClient();
+
+//*** Manage Secrets ***//
+// Naplnìní ExternalSettings -> User.Application
+builder.Services.Configure<ExternalSettings>(builder.Configuration.GetSection("ABSTRACT_API"));
+
+//*** Rate Limiting ***//
+builder.Services.AddAppRateLimiting(builder.Configuration);
+
+//*** Email Klient ***//
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Email"));
+builder.Services.AddTransient<IEmailService, MailService>();
+
+//*** JWT Authentication ***//
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
+//*** Middleware ***//
+builder.Services.AddHttpContextAccessor();
+
+//*** DI ***//
+// Add detection
+builder.Services.AddDetection();
+
+// Add modules services
+builder.Services.AddModulesServices(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference(); // Pøidá vizuální rozhraní Scalar
+
+    // UI For Testing API Endpoints
+    app.MapScalarApiReference();
 }
 
-app.UseHttpsRedirection();
+//*** Middleware ***//
+app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<HeadersMiddleware>();
+app.UseMiddleware<CorrelationIdMiddleware>();
 
+app.UseDetection();
+
+app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseRateLimiter();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

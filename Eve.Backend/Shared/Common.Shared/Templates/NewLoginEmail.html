@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nové přihlášení k účtu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f7;
+            color: #51545e;
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f4f7;
+            padding-bottom: 40px;
+        }
+
+        .main {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #222e3e;
+            padding: 25px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .content {
+            padding: 30px;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .info-item {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #333;
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .button {
+            background-color: #dc3545;
+            color: #ffffff;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #a8aaaf;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <table class="main">
+            <tr>
+                <td class="header">
+                    <h1>Zabezpečení účtu</h1>
+                </td>
+            </tr>
+            <tr>
+                <td class="content">
+                    <p>Dobrý den,</p>
+                    <p>Zaznamenali jsme nové přihlášení k vašemu účtu. Pokud jste to byli vy, můžete tento e-mail bezpečně ignorovat.</p>
+
+                    <div class="info-box">
+                        <div class="info-item">
+                            <span class="info-label">Zařízení:</span> {deviceType}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Název:</span> {deviceName}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">IP Adresa:</span> {ipAddress}
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Datum:</span> {dateTime}
+                        </div>
+                    </div>
+
+                    <p style="color: #dc3545; font-weight: bold;">Pokud jste se k účtu nepřihlásili vy, doporučujeme okamžitě změnit heslo a ukončit všechny aktivní relace.</p>
+                </td>
+            </tr>
+        </table>
+        <div class="footer">
+            <p>Toto je automaticky generovaný e-mail, prosíme, neodpovídejte na něj.</p>
+            <p>&copy; 2026 Eve System</p>
+        </div>
+    </div>
+</body>
+</html>

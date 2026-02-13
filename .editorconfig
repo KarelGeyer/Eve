@@ -1,0 +1,19 @@
+root = true
+
+[*.cs]
+# Maximální délka řádku
+max_line_length = 130
+
+# Zákaz zalamování parametrů metod
+csharp_style_allow_multiple_blank_lines_multi_line_statements = true
+csharp_preserve_single_line_blocks = true
+csharp_preserve_single_line_statements = true
+
+# Tohle jsou ta magická nastavení pro parametry:
+csharp_wrap_before_binary_operators = non_terminal
+csharp_wrap_column_base = 0
+indent_size = 4
+indent_style = space
+
+# Vypnutí nuceného zalamování seznamů
+dotnet_diagnostic.IDE0055.severity = none

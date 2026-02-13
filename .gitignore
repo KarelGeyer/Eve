@@ -20,6 +20,7 @@ obj/
 appsettings.Development.json
 appsettings.Local.json
 secrets.json
+secrets.json
 
 # ==========================================
 # Node / NX / Frontend (Modern 2026)

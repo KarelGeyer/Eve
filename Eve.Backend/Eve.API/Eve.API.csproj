@@ -4,16 +4,26 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>f3da6646-6a44-4190-97d8-b80c938eb482</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
     <PackageReference Include="Scalar.AspNetCore" Version="2.12.30" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.1.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    <PackageReference Include="Wangkanai.Detection" Version="8.20.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Services\EmailService\EmailService.csproj" />
     <ProjectReference Include="..\Modules\Groups\Controllers\GroupsControllers.csproj" />
-    <ProjectReference Include="..\Modules\Users\Controllers\UsersControllers.csproj" />
+    <ProjectReference Include="..\Modules\Users\Users.Application\Users.Application.csproj" />
+    <ProjectReference Include="..\Modules\Users\Users.Controllers\Users.Controllers.csproj" />
+    <ProjectReference Include="..\Modules\Users\Users.Infrastructure\Users.Infrastructure.csproj" />
+    <ProjectReference Include="..\Shared\Common.Shared\Common.Shared.csproj" />
   </ItemGroup>
 
 </Project>
